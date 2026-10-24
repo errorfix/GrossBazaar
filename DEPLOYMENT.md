@@ -168,25 +168,13 @@ this domain.
 
 ---
 
-## 5. Turn on the enquiry forms
+## 5. Enquiry forms configuration
 
-Until `NEXT_PUBLIC_ENQUIRY_ENDPOINT` is set, both forms run in a clearly labelled
-**demonstration mode** and send nothing.
+The enquiry forms are configured to deliver submissions to **`info@grossbazaar.com`** using FormSubmit:
 
-The forms send a JSON `POST` to that URL and treat any `2xx` response as success. The simplest
-setup is a form service:
-
-1. Create a free form at **Formspree** (formspree.io) or a similar service, with
-   `hello@grossbazaar.com` as the recipient.
-2. Copy its endpoint URL (for example `https://formspree.io/f/abcdwxyz`).
-3. Vercel → **Settings → Environment Variables** → set `NEXT_PUBLIC_ENQUIRY_ENDPOINT` to that URL.
-4. **Redeploy**: Deployments tab → latest deployment → **⋯ → Redeploy**.
-   `NEXT_PUBLIC_*` variables are baked in at build time, so a redeploy is required.
-5. Submit a test enquiry for both "I have inventory" and "I want to source", and confirm
-   the emails arrive.
-
-> If you'd rather keep everything in-house (for example emails sent through Resend from a
-> built-in API route, with no third-party form service), that can be added to the project.
+- **Default Endpoint:** `https://formsubmit.co/ajax/info@grossbazaar.com` (configured in `src/config/site.ts`).
+- **First-time Activation:** Submit a test enquiry on the site. FormSubmit will immediately send an activation email to `info@grossbazaar.com`. Click the **"Activate Form"** button in that email to confirm. All subsequent submissions will be delivered instantly to your inbox.
+- **Formspree or Custom Endpoint (Optional):** If you prefer Formspree or another form service, set `NEXT_PUBLIC_ENQUIRY_ENDPOINT` to your custom endpoint URL in Vercel (**Settings → Environment Variables**) and redeploy.
 
 ---
 

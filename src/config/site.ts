@@ -28,10 +28,11 @@ export const siteConfig = {
   },
 
   /**
-   * Where enquiry forms POST their JSON payload. When unset, the forms run in a
-   * clearly labelled demonstration mode and nothing is transmitted.
+   * Where enquiry forms POST their JSON payload.
+   * Defaults to FormSubmit for info@grossbazaar.com, or can be overridden via NEXT_PUBLIC_ENQUIRY_ENDPOINT.
    */
-  enquiryEndpoint: process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT ?? null,
+  enquiryEndpoint:
+    process.env.NEXT_PUBLIC_ENQUIRY_ENDPOINT || "https://formsubmit.co/ajax/info@grossbazaar.com",
 } as const;
 
 export const navLinks = [

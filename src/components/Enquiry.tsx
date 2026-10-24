@@ -207,10 +207,19 @@ export function Enquiry() {
       return;
     }
     try {
+      const subject = `Gross-Bazaar Enquiry (${type === "supplier" ? "Supplier" : "Buyer"}): ${payload.businessName || payload.fullName}`;
       const res = await fetch(siteConfig.enquiryEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ enquiryType: type, ...payload, submittedAt: new Date().toISOString() }),
+        body: JSON.stringify({
+          _subject: subject,
+          _template: "table",
+          _captcha: "false",
+          _replyto: payload.email,
+          enquiryType: type,
+          ...payload,
+          submittedAt: new Date().toISOString(),
+        }),
       });
       if (!res.ok) throw new Error(String(res.status));
       setStatus("success");
