@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const WORD = "Gross-Bazaar".split("");
 const RUN_MS = 2400;
@@ -86,12 +87,15 @@ export function Loader() {
 
       <div className="loader-stage">
         <div className="loader-center">
-          <svg viewBox="0 0 32 32" className="h-14 w-14 text-on-navy sm:h-16 sm:w-16" aria-hidden="true">
-            <rect className="lm-supply" x="2.5" y="9.5" width="11" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-            <rect className="lm-demand" x="18" y="11.5" width="11.5" height="11.5" rx="1.5" fill="currentColor" />
-            <path className="lm-link" d="M8 9 Q16 -1 24 11" fill="none" stroke="var(--color-on-navy-muted)" strokeWidth="0.8" />
-            <rect className="lm-value" x="13.5" y="4" width="6" height="6" rx="1" fill="var(--color-signal)" />
-          </svg>
+          <div className="relative mb-3 h-14 w-14 sm:h-16 sm:w-16 animate-[gb-fade_800ms_var(--ease-out)_100ms_forwards]">
+            <Image
+              src="/logo.png"
+              alt="Gross-Bazaar"
+              fill
+              className="object-contain drop-shadow-[0_4px_24px_rgba(30,144,255,0.45)]"
+              priority
+            />
+          </div>
 
           <p className="loader-word" aria-hidden="true">
             {WORD.map((ch, i) => (
